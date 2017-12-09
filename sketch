@@ -1,0 +1,75 @@
+var playertest;
+var playerright;
+var playx;
+var playy;
+var xspeed = 20;
+
+function preload() {
+    playertest = loadAnimation("assets/jogcycle001.png", "assets/jogcycle060.png");
+    playerright = loadAnimation("assets/otherjogcycle01.png", "assets/otherjogcycle60.png")
+}
+
+function setup() {
+    createCanvas(windowWidth, windowHeight);
+    myPlayer = new Player(100, 500);
+
+}
+
+function draw() {
+    background(255);
+    myPlayer.move();
+    myPlayer.render();
+    /*animation(playertest, 200, 450);*/
+
+}
+
+class Player {
+    //it has a rest image
+    //it has a moving animation and a move function
+    //it stops when reaching an object
+    //it has defined edges?
+
+    constructor(tempx, tempy, temph, tempw) {
+        this.x = tempx;
+        this.y = tempy;
+        this.h = temph;
+        this.w = tempw;
+    }
+//render a cube
+    /*render() {
+        rectMode(CENTER);
+        fill(0);
+        rect(this.x, this.y, this.w, this.h);
+    }
+*/
+
+    //someday render thing
+    render (){
+        animation(playertest,this.x,this.y);
+    }
+
+    move() {
+        if (keyIsDown(LEFT_ARROW)||keyIsDown(RIGHT_ARROW)) {
+            playertest.play();
+        } else {playertest.stop();}
+        if (keyIsDown(LEFT_ARROW)) {
+            this.x = this.x - xspeed;
+        }
+        if (keyIsDown(RIGHT_ARROW)) {
+            this.x = this.x + xspeed
+        }
+    }
+
+
+    
+    relocate () {
+        if (this.x >= windowWidth) {
+            this.x == 5;
+        }
+        if (this.x <= 0) {
+            this.x == 5;
+            }
+        }
+    
+
+}
